@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">TestTask</string>
+    <string name="verification_code_name">Проверочный код</string>
+    <string name="button_next_login">Получить код</string>
+    <string name="button_enter_login">Продолжить</string>
+    <string name="hint_number_login">+79998882525</string>
+    <string name="text_insert_code">Введите код</string>
+    <string name="text_insert_code_sms">Мы отправили SMS с кодом проверки на ваш телефон</string>
+    <string name="text_insert_phone">Введите ваш номер телефона, номер должен начинаться с "+7"</string>
+    <string name="button_resend_code">Повторить</string>
+    <string name="text_resend_code">Повторная отправка кода возможна через: </string>
+</resources>
