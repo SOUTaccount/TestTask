@@ -28,38 +28,38 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PlaceListActivity extends AppCompatActivity {
+public class UserInfoActivity extends AppCompatActivity {
     private LocationManager locationManager;
     String statusGPS, statusNet,enableGPS, enableNet, locationGPS, locationNet;
     NetWorkService netWorkService;
-    RecyclerView rvPlaces;
-    ArrayList<Places> alPlaces;
-    private final String PLACES_LOG_TAG = "PlacesLog";
+    RecyclerView rvUser;
+    ArrayList<User> alUsers;
+    private final String USER_LOG_TAG = "UserLog";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_place_list);
-        rvPlaces = findViewById(R.id.rv_places);
+        setContentView(R.layout.activity_users_list);
+        rvUser = findViewById(R.id.rv_users);
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         getPlacesApi();
     }
     private void getPlacesApi(){
         netWorkService.getInstance()
                 .getJSONApi()
-                .getPlaces()
-                .enqueue(new Callback<ArrayList<Places>>()
+                .getUser()
+                .enqueue(new Callback<ArrayList<User>>()
                 {
                     @Override
-                    public void onResponse(Call<ArrayList<Places>> call, Response<ArrayList<Places>> response)
+                    public void onResponse(Call<ArrayList<User>> call, Response<ArrayList<User>> response)
                     {
                         if(response.isSuccessful())
                         {
-                            Log.d(PLACES_LOG_TAG,"RESPONSE = " + response.body());
-                            alPlaces = response.body();
-                            PlacesAdapter placesAdapter = new PlacesAdapter(PlaceListActivity.this,alPlaces);
-                            rvPlaces.setAdapter(placesAdapter);
-                            rvPlaces.setLayoutManager(new LinearLayoutManager(PlaceListActivity.this));
+                            Log.d(USER_LOG_TAG,"RESPONSE = " + response.body());
+                            alUsers = response.body();
+                            UserInfoAdapter userInfoAdapter = new UserInfoAdapter(UserInfoActivity.this, alUsers);
+                            rvUser.setAdapter(userInfoAdapter);
+                            rvUser.setLayoutManager(new LinearLayoutManager(UserInfoActivity.this));
 
                         } else
 
@@ -69,32 +69,32 @@ public class PlaceListActivity extends AppCompatActivity {
                         {
                             try {
                                 JSONObject jObjError = new JSONObject(response.errorBody().string());
-                                Toast.makeText(PlaceListActivity.this, jObjError.getString("message"), Toast.LENGTH_LONG).show();
-                                Log.d(PLACES_LOG_TAG,"try error responce = " + response.body());
+                                Toast.makeText(UserInfoActivity.this, jObjError.getString("message"), Toast.LENGTH_LONG).show();
+                                Log.d(USER_LOG_TAG,"try error responce = " + response.body());
                             } catch (Exception e) {
                                 try {
                                     JSONObject jObjError = new JSONObject(response.errorBody().string());
-                                    Log.d(PLACES_LOG_TAG,"json eror = " + jObjError.getString("message"));
+                                    Log.d(USER_LOG_TAG,"json eror = " + jObjError.getString("message"));
                                 } catch (JSONException jsonException) {
                                     jsonException.printStackTrace();
-                                    Log.d(PLACES_LOG_TAG,"json exception = " + jsonException.getMessage());
+                                    Log.d(USER_LOG_TAG,"json exception = " + jsonException.getMessage());
                                 } catch (IOException ioException) {
                                     ioException.printStackTrace();
-                                    Log.d(PLACES_LOG_TAG,"io exception = " + ioException.getMessage());
+                                    Log.d(USER_LOG_TAG,"io exception = " + ioException.getMessage());
                                 }
-                                Toast.makeText(PlaceListActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                                Log.d(PLACES_LOG_TAG,"catch error responce = " + e.getMessage());
-                                Log.d(PLACES_LOG_TAG,"error_body = " + response.errorBody());
-                                Log.d(PLACES_LOG_TAG,"responce_size = " + response.body());
+                                Toast.makeText(UserInfoActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                                Log.d(USER_LOG_TAG,"catch error responce = " + e.getMessage());
+                                Log.d(USER_LOG_TAG,"error_body = " + response.errorBody());
+                                Log.d(USER_LOG_TAG,"responce_size = " + response.body());
                             }
                         }
                     }
 
                     @Override
-                    public void onFailure(Call<ArrayList<Places>> call, Throwable t)
+                    public void onFailure(Call<ArrayList<User>> call, Throwable t)
                     {
-                        Log.d(PLACES_LOG_TAG,"fail");
-                        Toast toast = Toast.makeText(PlaceListActivity.this,
+                        Log.d(USER_LOG_TAG,"fail");
+                        Toast toast = Toast.makeText(UserInfoActivity.this,
                                 "Проверьте ваше интернет соединение", Toast.LENGTH_LONG);
                         toast.show();
                         t.printStackTrace();
@@ -117,7 +117,7 @@ public class PlaceListActivity extends AppCompatActivity {
         @Override
         public void onProviderEnabled(String provider) {
             checkEnabled();
-            if (ActivityCompat.checkSelfPermission(PlaceListActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(PlaceListActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.checkSelfPermission(UserInfoActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(UserInfoActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 // TODO: Consider calling
                 //    ActivityCompat#requestPermissions
                 // here to request the missing permissions, and then overriding

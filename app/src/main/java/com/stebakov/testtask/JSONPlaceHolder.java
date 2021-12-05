@@ -8,7 +8,7 @@ import retrofit2.http.Headers;
 
 public interface JSONPlaceHolder {
     @Headers("Content-Type: application/json")
-    @GET("getPlaces")
-    Call<ArrayList<Places>> getPlaces();
+    @GET("user")
+    Call<ArrayList<User>> getUser();
 
 }

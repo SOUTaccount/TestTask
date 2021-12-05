@@ -109,7 +109,7 @@ public class VerificationCodeActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Intent intent = new Intent(VerificationCodeActivity.this, PlaceListActivity.class);
+                            Intent intent = new Intent(VerificationCodeActivity.this, UserInfoActivity.class);
                             startActivity(intent);
                             finish();
                             Toast.makeText(getApplicationContext(),

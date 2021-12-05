@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TestTask"
         android:usesCleartextTraffic="true">
-        <activity android:name=".PlaceListActivity"></activity>
+        <activity android:name=".UserInfoActivity"></activity>
         <activity android:name=".VerificationCodeActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

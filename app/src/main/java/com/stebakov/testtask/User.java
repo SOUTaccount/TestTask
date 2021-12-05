@@ -3,13 +3,13 @@ package com.stebakov.testtask;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Places {
+public class User {
     @SerializedName("name")
     @Expose
     private String name;
-    @SerializedName("image")
+    @SerializedName("email")
     @Expose
-    private String image;
+    private String email;
 
     public void setName(String name) {
         this.name = name;
@@ -20,10 +20,10 @@ public class Places {
     }
 
     public String getImage() {
-        return image;
+        return email;
     }
 
     public void setImage(String image) {
-        this.image = image;
+        this.email = image;
     }
 }

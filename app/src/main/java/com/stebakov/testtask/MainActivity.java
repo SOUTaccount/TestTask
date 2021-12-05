@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         this.setTitle("Вход по номеру телефона");
         mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser()!=null){
-            Intent checkedUserIntent = new Intent(this, PlaceListActivity.class);
+            Intent checkedUserIntent = new Intent(this, UserInfoActivity.class);
             startActivity(checkedUserIntent);
             finish(); // чтобы активности не накладывались друг на друга, из-за этой функции мейн активити завершается
         }
